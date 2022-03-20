@@ -41,12 +41,14 @@ namespace Reader
 
         public List<string> ScrapeEconomist(string htmlContent)
         {
-            var title = "Temporary Title";
             var splitByPara = htmlContent.Split("<p");
             var partsWithParaTag = splitByPara.Where(para => para.Contains("article__body-text") && para.Length < 10000);
-            var parasWithHtmlStripped = partsWithParaTag.Select(para => para.StripHTML().GetStringAfter(">")).ToList();
-            parasWithHtmlStripped.Insert(0, title);
-            return parasWithHtmlStripped;
+            var refinedParagraphs = partsWithParaTag.Select(para => para.StripHTML().GetStringAfter(">")).ToList();
+            
+            var title = htmlContent.GetStringBetween("<title>", "</title>", true, false);
+            refinedParagraphs.Insert(0, title);
+
+            return refinedParagraphs;
         }
     }
 }

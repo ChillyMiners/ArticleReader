@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dean\\source\\repos\\Reader\\Reader\\Reader.csproj",
+      "projectUniqueName": "C:\\Users\\Dean\\Documents\\GitHub\\ArticleReader\\Reader\\Reader\\Reader.csproj",
       "projectName": "Reader",
-      "projectPath": "C:\\Users\\Dean\\source\\repos\\Reader\\Reader\\Reader.csproj",
+      "projectPath": "C:\\Users\\Dean\\Documents\\GitHub\\ArticleReader\\Reader\\Reader\\Reader.csproj",
       "packagesPath": "C:\\Users\\Dean\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dean\\source\\repos\\Reader\\Reader\\obj\\",
+      "outputPath": "C:\\Users\\Dean\\Documents\\GitHub\\ArticleReader\\Reader\\Reader\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dean\\AppData\\Roaming\\NuGet\\NuGet.Config",
