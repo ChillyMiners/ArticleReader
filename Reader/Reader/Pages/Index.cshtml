@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = Model.Article.First();
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Article.First()</h1>
+
+    <form method="post">
+        <input class="w-100" asp-for="ArticleUrl" />
+        <br><br>
+    </form>
+
+    @if (Model.Article.Count > 1)
+    {
+        @for (int i = 1; i < Model.Article.Count; i++)
+        {
+            <p class="text-justify">@Model.Article[i]</p>
+        }
+    }
+</div>
