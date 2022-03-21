@@ -5,10 +5,10 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">@Model.Article.First()</h1>
+    <h1 class="display-4 article-title">@Model.Article.First()</h1>
 
     <form method="post">
-        <input class="w-100" asp-for="ArticleUrl" />
+        <input class="w-100 article-search" asp-for="ArticleUrl" />
         <br><br>
     </form>
 
@@ -16,7 +16,7 @@
     {
         @for (int i = 1; i < Model.Article.Count; i++)
         {
-            <p class="text-justify">@Model.Article[i]</p>
+            <p class="text-justify article-paragraph">@Model.Article[i]</p>
         }
     }
 </div>
