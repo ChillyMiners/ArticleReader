@@ -43,7 +43,7 @@ namespace Reader
         {
             var splitByPara = htmlContent.Split("<p");
             var partsWithParaTag = splitByPara.Where(para => para.Contains("article__body-text") && para.Length < 10000);
-            var refinedParagraphs = partsWithParaTag.Select(para => para.StripHTML().GetStringAfter(">")).ToList();
+            var refinedParagraphs = partsWithParaTag.Select(para => para.GetStringBetween(">", "</p", false, false).StripHTML()).ToList();
             
             var title = htmlContent.GetStringBetween("<title>", "</title>", true, false);
             refinedParagraphs.Insert(0, title);
