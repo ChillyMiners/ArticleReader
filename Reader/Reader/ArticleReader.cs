@@ -10,8 +10,6 @@ namespace Reader
     {
         private readonly WebClient _webClient;
 
-        private const char QUOTE = '"';
-
         public ArticleReader()
         {
             _webClient = new WebClient();
@@ -35,7 +33,8 @@ namespace Reader
             return newspaper switch
             {
                 "economist" => ScrapeEconomist(htmlContent),
-                _ => new List<string> { $"ERROR - Not a supported paper. Current supported papers are: Economist" },
+                "nytimes" => ScrapeNewYorkTimes(htmlContent),
+                _ => new List<string> { $"ERROR - Not a supported paper. Current supported papers are: Economist, NYT" },
             };
         }
 
@@ -46,6 +45,18 @@ namespace Reader
             var refinedParagraphs = partsWithParaTag.Select(para => para.GetStringBetween(">", "</p", false, false).StripHTML()).ToList();
             
             var title = htmlContent.GetStringBetween("<title>", "</title>", true, false);
+            refinedParagraphs.Insert(0, title);
+
+            return refinedParagraphs;
+        }
+
+        public List<string> ScrapeNewYorkTimes(string htmlContent)
+        {
+            var splitByPara = htmlContent.Split("<p");
+            var partsWithParaTag = splitByPara.Where(para => para.Contains("css-g5piaz evys1bk0") && para.Length < 10000);
+            var refinedParagraphs = partsWithParaTag.Select(para => para.GetStringBetween(">", "</p", false, false).StripHTML()).ToList();
+
+            var title = htmlContent.GetStringBetween("<title", "</title>", true, false).GetStringAfter(">");
             refinedParagraphs.Insert(0, title);
 
             return refinedParagraphs;
